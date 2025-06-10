@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝓚𝓮𝓷𝓮𝓷.</title>
+    <!-- Google Fonts-ის ჩატვირთვა -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* *  𝓮𝓷𝓮𝓷. - ვებსაიტის სტილები
+         * ვერსია: 1.2 (ფერი დაბრუნებულია)
+        */
+
+        /* ძირითადი სტილები */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f5f1ed; /* ოდნავ ღია ფერი */
+            color: #333;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        h1, h2, h3 {
+            font-weight: 600;
+        }
+
+        /* ნავიგაცია */
+        nav {
+            background-color: #e9e0d4;
+            backdrop-filter: blur(10px); /* შუშის ეფექტი */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 15px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo a {
+            font-size: 32px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #863232; /* დაბრუნებული ფერი */
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+        
+        .nav-links li:not(:last-child) {
+            margin-left: 35px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #863232; /* დაბრუნებული ფერი */
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+            margin-left: 35px;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .mobile-menu-button {
+            display: none; /* დამალულია დიდ ეკრანზე */
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* მთავარი კონტენტი */
+        .page-content {
+            padding: 40px 5%;
+            padding-top: 100px; /* ნავიგაციის სიმაღლის გათვალისწინებით */
+            min-height: calc(100vh - 120px);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1.page-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        /* მთავარი გვერდი */
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .hero h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+            color: #444;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #333;
+            color: white;
+            padding: 14px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #555;
+            transform: translateY(-3px);
+        }
+        
+        .about-section {
+            display: flex;
+            align-items: center;
+            padding: 60px 0;
+            gap: 50px;
+        }
+        
+        .about-image { flex: 1; }
+        .about-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-text { flex: 1; }
+        .about-text h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        /* პროდუქტების გვერდი */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            padding: 20px 0;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            font-size: 17px;
+            color: #863232; /* დაბრუნებული ფერი */
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #ddd;
+            padding: 40px 5%;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        /* კონტაქტი */
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #863232;
+            box-shadow: 0 0 0 3px rgba(134, 50, 50, 0.1);
+        }
+        
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            display: block;
+            width: 100%;
+            font-weight: 500;
+        }
+        
+        .submit-button:hover {
+            background-color: #555;
+            transform: translateY(-3px);
+        }
+
+        /* მობილური რესპონსივობა */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* მენიუს დამალვა მობილურზე */
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                padding: 10px 0;
+            }
+
+            .nav-links.active {
+                display: flex; /* მენიუს გამოჩენა კლიკზე */
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+                text-align: center;
+                margin-left: 0 !important;
+            }
+
+            .cart-icon {
+                margin-left: 0;
+                padding-left: 20px; /* კალათის და ღილაკის დაშორება */
+            }
+
+            .mobile-nav-container {
+                display: flex;
+                align-items: center;
+            }
+            
+            .mobile-menu-button {
+                display: block; /* ღილაკის გამოჩენა მობილურზე */
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .about-section {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ნავიგაცია -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#" onclick="showPage('home')">𝓚𝓮𝓷𝓮𝓷.</a>
+            </div>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" onclick="showPage('home')" class="nav-link active">მთავარი</a></li>
+                <li><a href="#" onclick="showPage('tshirts')" class="nav-link">მაისურები</a></li>
+            
+                <li><a href="#" onclick="showPage('collections')" class="nav-link">კოლექციები</a></li>
+                
+              <li><a href="#" onclick="showPage('contact')" class="nav-link">კონტაქტი</a></li>
+            </ul>
+
+            <div class="mobile-nav-container">
+                 <div class="cart-icon" onclick="showPage('cart')">🛒</div>
+                 <button class="mobile-menu-button" id="mobile-menu-button">☰</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- მთავარი კონტენტი -->
+    <div class="page-content">
+        <!-- მთავარი გვერდი -->
+        <div id="home" class="page">
+            <div class="hero">
+                <h1>𝙵𝙸𝙽𝙳 𝚈𝙾𝚄𝚁 𝚂𝚃𝚈𝙻𝙴.</h1>
+                <a href="#" onclick="showPage('tshirts')" class="cta-button">კოლექციის ნახვა</a>
+            </div>
+            <div class="about-section">
+                <div class="about-image">
+<img src="https://assets.onecompiler.app/43maj24uy/43mahu7zn/TBILISI,%20Georgia%20%F0%9F%87%AC%F0%9F%87%AA.jpeg" 
+     alt="𝓚𝓮𝓷𝓮𝓷 ბრენდი" 
+     style="width: 350px; height: auto;">
+                </div>
+                <div class="about-text">
+                    <h2>ჩვენს შესახებ</h2>
+                    <p>𝓚𝓮𝓷𝓮𝓷. არის ქართული ბრენდი, რომელიც ქმნის მაღალი ხარისხის მინიმალისტურ ტანსაცმელს. ჩვენი პროდუქცია გამოირჩევა უნიკალური დიზაინით და მაღალი ხარისხის მასალებით.</p>
+                    <p>ჩვენი მისიაა შევქმნათ მინიმალისტური, მაგრამ გამორჩეული ტანსაცმელი, რომელიც იქნება კომფორტული და სტილური.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- მაისურების გვერდი -->
+        <div id="tshirts" class="page" style="display:none;">
+            <h1 class="page-title">მაისურები</h1>
+            <div class="products-grid">
+                <!-- პროდუქტი 1 -->
+                <div class="product-card" onclick="showProductDetails()">
+                    <div class="product-image">
+                        <img src="https://placehold.co/400x500/ffffff/333333?text=T-shirt+1" alt="თეთრი მაისური">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">მინიმალისტური თეთრი მაისური</h3>
+                        <p class="product-price">89₾</p>
+                    </div>
+                </div>
+                <!-- პროდუქტი 2-4 და სხვა ... -->
+                <div class="product-card">
+                    <div class="product-image"><img src="https://placehold.co/400x500/2d2d2d/ffffff?text=T-shirt+2" alt="შავი მაისური"></div>
+                    <div class="product-info"><h3 class="product-title">მინიმალისტური შავი მაისური</h3><p class="product-price">89₾</p></div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image"><img src="https://placehold.co/400x500/eeeeee/333333?text=T-shirt+3" alt="რუხი მაისური"></div>
+                    <div class="product-info"><h3 class="product-title">მინიმალისტური რუხი მაისური</h3><p class="product-price">89₾</p></div>
+                </div>
+                 <div class="product-card">
+                    <div class="product-image"><img src="https://placehold.co/400x500/a3b8c2/ffffff?text=T-shirt+4" alt="ლურჯი მაისური"></div>
+                    <div class="product-info"><h3 class="product-title">მინიმალისტური ლურჯი მაისური</h3><p class="product-price">89₾</p></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- კოლექციების გვერდი -->
+        <div id="collections" class="page" style="display:none;">
+            <h1 class="page-title">კოლექციები</h1>
+            <div class="products-grid">
+                <!-- კოლექცია 1 -->
+                <div class="product-card">
+                    <div class="product-image"><img src="https://placehold.co/400x500/f0e68c/333333?text=Summer+2025" alt="საზაფხულო კოლექცია"></div>
+                    <div class="product-info"><h3 class="product-title">საზაფხულო კოლექცია </h3></div>
+                </div>
+                <!-- კოლექცია 2 -->
+                <div class="product-card">
+                    <div class="product-image"><img src="https://placehold.co/400x500/d2b48c/ffffff?text=Autumn+2025" alt="საშემოდგომო კოლექცია"></div>
+                    <div class="product-info"><h3 class="product-title">საშემოდგომო კოლექცია </h3></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- კონტაქტის გვერდი -->
+        <div id="contact" class="page" style="display:none;">
+            <h1 class="page-title">კონტაქტი</h1>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('შეტყობინება გაგზავნილია!');">
+                <div class="form-group">
+                    <label for="name">სახელი</label>
+                    <input type="text" id="name" placeholder="თქვენი სახელი" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">ელ-ფოსტა</label>
+                    <input type="email" id="email" placeholder="თქვენი ელ-ფოსტა" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">შეტყობინება</label>
+                    <textarea id="message" placeholder="აკრიფეთ ტექსტი..." required></textarea>
+                </div>
+                <button type="submit" class="submit-button">გაგზავნა</button>
+            </form>
+        </div>
+        
+        <!-- კალათის გვერდი -->
+        <div id="cart" class="page" style="display:none; text-align: center;">
+            <h1 class="page-title">კალათა</h1>
+            <p style="margin-bottom: 30px;">თქვენი კალათა ცარიელია</p>
+            <a href="#" onclick="showPage('tshirts')" class="cta-button">პროდუქტების ნახვა</a>
+        </div>
+    </div>
+    
+    <!-- ფუტერი -->
+    <footer>
+        <p>&copy; 𝓚𝓮𝓷𝓮𝓷. ყველა უფლება დაცულია.</p>
+    </footer>
+    
+    <script>
+        // მობილური მენიუს ლოგიკა
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenuButton.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // ღილაკის იკონის შეცვლა
+            mobileMenuButton.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+
+        // გვერდების ნავიგაციის ფუნქცია
+        function showPage(pageId) {
+            // ყველა გვერდის დამალვა
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.style.display = 'none');
+            
+            // მოთხოვნილი გვერდის გამოჩენა
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.style.display = 'block';
+            }
+            
+            // აქტიური ლინკის მონიშვნა
+            const navLinkItems = document.querySelectorAll('.nav-link');
+            navLinkItems.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick') === `showPage('${pageId}')`) {
+                    link.classList.add('active');
+                }
+            });
+
+            // გვერდის დასაწყისში ასქროლვა
+            window.scrollTo(0, 0);
+
+            // მობილური მენიუს დახურვა ლინკზე გადასვლისას
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenuButton.textContent = '☰';
+            }
+        }
+    </script>
+</body>
+</html>
+ 
+ 
